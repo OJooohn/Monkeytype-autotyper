@@ -33,12 +33,16 @@ while True:
     wrds_div = driver.find_element(By.XPATH, '//div[@id="words"]')
     wrd = wrds_div.find_element(By.XPATH, '//div[@class="word active"]')
 
-    letters = ''.join(wrd.text)
-    letters += ' '
+    word = wrd.text
+    word += ' '
+    input_letters.send_keys(word)
 
-    for letter in letters:
+    # letters = ''.join(wrd.text)
+    # letters += ' '
+
+    # for letter in letters:
         # print(letter, end="", flush=True)
-        input_letters.send_keys(letter)
+        # input_letters.send_keys(letter)
         # sleep(0.05)
 
 sleep(60)

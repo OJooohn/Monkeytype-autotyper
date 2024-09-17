@@ -31,19 +31,18 @@ while True:
         break
 
     wrds_div = driver.find_element(By.XPATH, '//div[@id="words"]')
-    wrd = wrds_div.find_element(By.XPATH, '//div[@class="word active"]')
+    wrd_active = wrds_div.find_element(By.XPATH, '//div[@class="word active"]')
+    wrds = wrds_div.find_elements(By.TAG_NAME, 'div')
 
-    word = wrd.text
-    word += ' '
-    input_letters.send_keys(word)
+    words = []
+    for word in wrds:
+        if 'typed' not in word.get_attribute('class'):
+            words.append(word.text)
 
-    # letters = ''.join(wrd.text)
-    # letters += ' '
+    words_string = ' '.join(words)
+    words_string += ' '
+    input_letters.send_keys(words_string)
+    # print(words_string)
 
-    # for letter in letters:
-        # print(letter, end="", flush=True)
-        # input_letters.send_keys(letter)
-        # sleep(0.05)
-
-sleep(60)
+sleep(10)
 driver.close()
